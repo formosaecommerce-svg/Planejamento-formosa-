@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formosa · Planejamento de Marketing do Mês</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBFAF6;--surface:#FFFFFF;--ink:#1E2A2B;--muted:#6B7775;--hair:#E8E3D9;
+    --sun:#F2A93B;--disp:"Bricolage Grotesque",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;
+    --on:#2A6F66;--on-bg:#EEF7F5;--off:#B5562E;--off-bg:#FAF0EB;
+    /* segmentos */
+    --super:#3E8E4E;--farma:#2A9D8F;--mix:#9C4A7A;--pneus:#E1932B;--posto:#1565C0;--grupo:#1E2A2B;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 80px;}
+
+  /* TOPO */
+  .top{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 18px;justify-content:space-between;border-bottom:2px solid var(--ink);padding-bottom:16px;}
+  .brand{font-family:var(--disp);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;}
+  .brand b{color:var(--sun);}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(26px,4.5vw,42px);line-height:1.02;margin:8px 0 2px;letter-spacing:-.01em;}
+  .sub{color:var(--muted);font-size:14px;}
+  .period{font-family:var(--disp);font-weight:700;font-size:14px;text-align:right;}
+  .period input{font-family:var(--disp);font-weight:700;font-size:15px;border:1px solid var(--hair);border-radius:10px;padding:6px 10px;color:var(--ink);background:var(--surface);text-align:right;}
+  .period span{display:block;color:var(--muted);font-family:var(--body);font-weight:500;font-size:12px;margin-top:4px;}
+
+  /* TOOLBAR */
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0 8px;}
+  .btn{font-family:var(--body);font-weight:600;font-size:13.5px;border:1px solid var(--hair);background:var(--surface);color:var(--ink);border-radius:24px;padding:9px 16px;cursor:pointer;transition:.15s;display:inline-flex;align-items:center;gap:7px;}
+  .btn:hover{border-color:var(--ink);}
+  .btn.primary{background:var(--ink);color:#FBFAF6;border-color:var(--ink);}
+  .btn.primary:hover{background:#000;}
+  .btn.sun{background:var(--sun);border-color:var(--sun);color:#3a2a00;}
+  .spacer{flex:1;}
+  select.filter{font-family:var(--body);font-size:13px;border:1px solid var(--hair);border-radius:20px;padding:8px 12px;background:var(--surface);color:var(--ink);}
+
+  /* STATS */
+  .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin:18px 0 26px;}
+  .stat{background:var(--surface);border:1px solid var(--hair);border-radius:14px;padding:14px 16px;}
+  .stat .v{font-family:var(--disp);font-weight:800;font-size:26px;line-height:1;}
+  .stat .k{color:var(--muted);font-size:12px;margin-top:6px;}
+  .stat.on .v{color:var(--on);} .stat.off .v{color:var(--off);}
+
+  /* SEÇÕES ON/OFF */
+  .section{margin-bottom:34px;}
+  .section-h{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+  .section-h .eb{font-family:var(--disp);font-weight:800;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:5px 12px;border-radius:20px;}
+  .section.on .eb{background:var(--on);} .section.off .eb{background:var(--off);}
+  .section-h h2{font-family:var(--disp);font-weight:800;font-size:20px;margin:0;}
+  .section-h .cnt{color:var(--muted);font-size:13px;font-weight:600;}
+  .section-h::after{content:"";flex:1;height:1px;background:var(--hair);}
+
+  /* GRUPOS POR CANAL */
+  .channel{margin-bottom:18px;}
+  .channel-h{font-family:var(--disp);font-weight:700;font-size:13px;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin:0 0 10px;display:flex;align-items:center;gap:8px;}
+  .channel-h .dot{width:9px;height:9px;border-radius:50%;background:var(--muted);}
+  .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
+
+  /* CARD */
+  .card{background:var(--surface);border:1px solid var(--hair);border-left:5px solid var(--seg,var(--grupo));border-radius:14px;padding:14px 16px;cursor:pointer;transition:.15s;position:relative;}
+  .card:hover{box-shadow:0 4px 14px rgba(0,0,0,.07);transform:translateY(-1px);}
+  .card .c-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px;}
+  .seg-badge{font-size:10.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#fff;background:var(--seg,var(--grupo));padding:3px 8px;border-radius:20px;}
+  .status-badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:20px;border:1px solid var(--hair);background:#fff;color:var(--muted);}
+  .status-badge.s-ideia{color:#8a6d00;border-color:#ecd98a;background:#fbf6e3;}
+  .status-badge.s-producao{color:#1565C0;border-color:#bcd6f2;background:#eaf2fb;}
+  .status-badge.s-aprovado{color:#2e7d32;border-color:#bfe0c1;background:#eef7ef;}
+  .status-badge.s-publicado{color:#fff;border-color:var(--ink);background:var(--ink);}
+  .card .c-data{margin-left:auto;font-family:var(--disp);font-weight:700;font-size:12.5px;color:var(--muted);white-space:nowrap;}
+  .card .c-titulo{font-weight:600;font-size:14.5px;margin-bottom:4px;}
+  .card .c-obs{color:var(--muted);font-size:12.5px;}
+  .card .c-foot{display:flex;align-items:center;gap:10px;margin-top:9px;font-size:12px;color:var(--muted);}
+  .card .c-resp{font-weight:600;}
+  .card a.c-link{color:var(--on);font-weight:600;text-decoration:none;}
+  .card a.c-link:hover{text-decoration:underline;}
+
+  .add-card{border:1.5px dashed var(--hair);background:transparent;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-weight:600;font-size:13.5px;cursor:pointer;min-height:64px;transition:.15s;}
+  .add-card:hover{border-color:var(--ink);color:var(--ink);}
+
+  .empty{color:var(--muted);font-size:13.5px;font-style:italic;padding:8px 0 4px;}
+
+  /* MODAL */
+  .overlay{position:fixed;inset:0;background:rgba(20,25,25,.45);display:none;align-items:center;justify-content:center;padding:18px;z-index:50;}
+  .overlay.show{display:flex;}
+  .modal{background:var(--surface);border-radius:18px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;padding:24px;box-shadow:0 18px 50px rgba(0,0,0,.25);}
+  .modal h3{font-family:var(--disp);font-weight:800;font-size:20px;margin:0 0 16px;}
+  .field{margin-bottom:14px;}
+  .field label{display:block;font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted);margin-bottom:5px;}
+  .field input,.field select,.field textarea{width:100%;font-family:var(--body);font-size:14px;border:1px solid var(--hair);border-radius:10px;padding:10px 12px;background:#fff;color:var(--ink);}
+  .field textarea{resize:vertical;min-height:64px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .modal-actions{display:flex;gap:10px;margin-top:20px;align-items:center;}
+  .modal-actions .spacer{flex:1;}
+  .btn.danger{color:#b5302e;border-color:#e8b8b8;}
+  .btn.danger:hover{background:#fbeaea;border-color:#b5302e;}
+
+  footer{margin-top:42px;border-top:1px solid var(--hair);padding-top:16px;color:var(--muted);font-size:12.5px;}
+  footer b{color:var(--ink);}
+
+  @media (max-width:760px){.stats{grid-template-columns:repeat(2,1fr);}.period{text-align:left;}.field-row{grid-template-columns:1fr;}}
+  @media print{body{background:#fff;}.toolbar,.add-card,.overlay{display:none!important;}.card{break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div>
+      <div class="brand">Grupo <b>Formosa</b> · @formosaoficial</div>
+      <h1>Planejamento de Marketing</h1>
+      <div class="sub">Espaço de planejamento do mês — mídias ON (digital) e OFF (offline) · Belém · Pará</div>
+    </div>
+    <div class="period">
+      <input id="mesInput" type="text" placeholder="Mês / referência" value="Julho 2026">
+      <span id="periodSub">Atualizado automaticamente</span>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn primary" id="btnAdd">＋ Nova ação</button>
+    <select class="filter" id="filtroSeg">
+      <option value="">Todos os segmentos</option>
+      <option value="Super Formosa">Super Formosa</option>
+      <option value="Formosa Farma">Formosa Farma</option>
+      <option value="Formosa Mix">Formosa Mix</option>
+      <option value="Formosa Pneus">Formosa Pneus</option>
+      <option value="Posto Formosa">Posto Formosa</option>
+      <option value="Grupo">Grupo</option>
+    </select>
+    <select class="filter" id="filtroStatus">
+      <option value="">Todos os status</option>
+      <option value="ideia">Ideia</option>
+      <option value="producao">Em produção</option>
+      <option value="aprovado">Aprovado</option>
+      <option value="publicado">Publicado</option>
+    </select>
+    <span class="spacer"></span>
+    <button class="btn" id="btnExport">⬇ Exportar</button>
+    <button class="btn" id="btnImport">⬆ Importar</button>
+    <button class="btn" onclick="window.print()">🖨 Imprimir/PDF</button>
+    <button class="btn danger" id="btnClear">Limpar tudo</button>
+    <input type="file" id="fileImport" accept="application/json" style="display:none">
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div id="board"></div>
+
+  <footer>
+    <b>Como usar:</b> clique em <b>＋ Nova ação</b> (ou no “+” de cada canal) para cadastrar uma mídia. Marque se é <b>ON</b> (digital) ou <b>OFF</b> (offline), o segmento, a data e o status. Clique em qualquer card para editar. Tudo é salvo automaticamente <b>neste navegador</b> — use <b>Exportar</b> para gerar um backup/compartilhar e <b>Importar</b> para restaurar.
+  </footer>
+</div>
+
+<!-- MODAL -->
+<div class="overlay" id="overlay">
+  <div class="modal">
+    <h3 id="modalTitle">Nova ação</h3>
+    <input type="hidden" id="f_id">
+    <div class="field-row">
+      <div class="field">
+        <label>Mídia</label>
+        <select id="f_tipo">
+          <option value="on">ON — Digital</option>
+          <option value="off">OFF — Offline</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Canal / formato</label>
+        <input id="f_canal" list="canais" placeholder="Ex.: Reels, Outdoor...">
+        <datalist id="canais">
+          <option>Reels</option><option>Carrossel</option><option>Stories</option>
+          <option>Feed / Imagem</option><option>YouTube</option><option>TikTok</option>
+          <option>Mídia paga (Ads)</option><option>E-mail / CRM</option><option>WhatsApp</option>
+          <option>Outdoor / Busdoor</option><option>TV</option><option>Rádio</option>
+          <option>Panfleto / Encarte</option><option>PDV / Loja</option><option>Jornal / Revista</option>
+          <option>Evento / Ação</option><option>Patrocínio</option>
+        </datalist>
+      </div>
+    </div>
+    <div class="field">
+      <label>Título / tema da ação</label>
+      <input id="f_titulo" placeholder="Ex.: Campanha 7.7 — 77 itens de verão">
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Segmento</label>
+        <select id="f_segmento">
+          <option>Grupo</option><option>Super Formosa</option><option>Formosa Farma</option>
+          <option>Formosa Mix</option><option>Formosa Pneus</option><option>Posto Formosa</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Data</label>
+        <input id="f_data" type="date">
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Status</label>
+        <select id="f_status">
+          <option value="ideia">Ideia</option>
+          <option value="producao">Em produção</option>
+          <option value="aprovado">Aprovado</option>
+          <option value="publicado">Publicado</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Responsável</label>
+        <input id="f_resp" placeholder="Ex.: Equipe social">
+      </div>
+    </div>
+    <div class="field">
+      <label>Observação / briefing</label>
+      <textarea id="f_obs" placeholder="Detalhes, hook, legenda, parceiros..."></textarea>
+    </div>
+    <div class="field">
+      <label>Link (opcional)</label>
+      <input id="f_link" placeholder="Link do material, Asana, Drive...">
+    </div>
+    <div class="modal-actions">
+      <button class="btn danger" id="btnDelete" style="display:none">Excluir</button>
+      <span class="spacer"></span>
+      <button class="btn" id="btnCancel">Cancelar</button>
+      <button class="btn primary" id="btnSave">Salvar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const STORE_KEY = "formosa_plan_v1";
+const SEG_COLORS = {
+  "Grupo":"var(--grupo)","Super Formosa":"var(--super)","Formosa Farma":"var(--farma)",
+  "Formosa Mix":"var(--mix)","Formosa Pneus":"var(--pneus)","Posto Formosa":"var(--posto)"
+};
+const STATUS_LABEL = {ideia:"Ideia",producao:"Em produção",aprovado:"Aprovado",publicado:"Publicado"};
+
+let state = load();
+
+function load(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return seed();
+}
+function seed(){
+  return {
+    mes:"Julho 2026",
+    items:[
+      {id:uid(),tipo:"on",canal:"Reels",titulo:"Tendências de verão 2026: como combinar",segmento:"Formosa Mix",data:"2026-07-04",status:"aprovado",resp:"Equipe social",obs:"Com a Mohana (time Formosa Mix).",link:""},
+      {id:uid(),tipo:"on",canal:"Mídia paga (Ads)",titulo:"Campanha 7.7 — 77 itens de verão",segmento:"Grupo",data:"2026-07-03",status:"producao",resp:"Tráfego",obs:"Impulsionamento até 07/07.",link:""},
+      {id:uid(),tipo:"off",canal:"Encarte / Panfleto",titulo:"Encarte de ofertas de verão",segmento:"Super Formosa",data:"2026-07-01",status:"ideia",resp:"Marketing",obs:"Distribuição nas lojas + porta a porta.",link:""},
+      {id:uid(),tipo:"off",canal:"Rádio",titulo:"Spot 30s — Verão Formosa",segmento:"Grupo",data:"2026-07-05",status:"ideia",resp:"Mídia",obs:"Veiculação em rádios locais de Belém.",link:""}
+    ]
+  };
+}
+function save(){ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }
+function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,7); }
+
+/* ---------- RENDER ---------- */
+function render(){
+  document.getElementById("mesInput").value = state.mes || "";
+  renderStats();
+  renderBoard();
+  save();
+}
+
+function filtered(){
+  const fs = document.getElementById("filtroSeg").value;
+  const fst = document.getElementById("filtroStatus").value;
+  return state.items.filter(i =>
+    (!fs || i.segmento===fs) && (!fst || i.status===fst)
+  );
+}
+
+function renderStats(){
+  const items = state.items;
+  const on = items.filter(i=>i.tipo==="on").length;
+  const off = items.filter(i=>i.tipo==="off").length;
+  const pub = items.filter(i=>i.status==="publicado").length;
+  const pend = items.filter(i=>i.status==="ideia"||i.status==="producao").length;
+  const html = `
+    <div class="stat"><div class="v">${items.length}</div><div class="k">ações no total</div></div>
+    <div class="stat on"><div class="v">${on}</div><div class="k">mídia ON (digital)</div></div>
+    <div class="stat off"><div class="v">${off}</div><div class="k">mídia OFF (offline)</div></div>
+    <div class="stat"><div class="v">${pend}</div><div class="k">em aberto</div></div>
+    <div class="stat"><div class="v">${pub}</div><div class="k">publicadas</div></div>`;
+  document.getElementById("stats").innerHTML = html;
+}
+
+function renderBoard(){
+  const data = filtered();
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+  board.appendChild(sectionEl("on","ON · Mídia digital", data.filter(i=>i.tipo==="on")));
+  board.appendChild(sectionEl("off","OFF · Mídia offline", data.filter(i=>i.tipo==="off")));
+}
+
+function sectionEl(tipo, titulo, items){
+  const sec = document.createElement("div");
+  sec.className = "section "+tipo;
+  sec.innerHTML = `<div class="section-h"><span class="eb">${tipo.toUpperCase()}</span>
+      <h2>${titulo.split("·")[1].trim()}</h2><span class="cnt">${items.length} ${items.length===1?"ação":"ações"}</span></div>`;
+
+  // agrupa por canal
+  const groups = {};
+  items.forEach(i=>{ const k=i.canal||"Sem canal"; (groups[k]=groups[k]||[]).push(i); });
+  const keys = Object.keys(groups).sort();
+
+  if(keys.length===0){
+    const e = document.createElement("div");
+    e.className="empty";
+    e.textContent = "Nenhuma ação aqui ainda. Clique no botão abaixo para adicionar.";
+    sec.appendChild(e);
+  }
+
+  keys.forEach(canal=>{
+    const ch = document.createElement("div");
+    ch.className="channel";
+    ch.innerHTML = `<p class="channel-h"><span class="dot"></span>${canal} <span style="color:var(--muted);font-weight:500">· ${groups[canal].length}</span></p>`;
+    const cards = document.createElement("div");
+    cards.className="cards";
+    groups[canal].sort((a,b)=>(a.data||"").localeCompare(b.data||""));
+    groups[canal].forEach(i=> cards.appendChild(cardEl(i)));
+    ch.appendChild(cards);
+    sec.appendChild(ch);
+  });
+
+  // botão adicionar nesta seção
+  const add = document.createElement("div");
+  add.className="add-card";
+  add.innerHTML = "＋ Adicionar ação "+tipo.toUpperCase();
+  add.onclick = ()=> openModal(null, tipo);
+  sec.appendChild(add);
+  return sec;
+}
+
+function cardEl(i){
+  const c = document.createElement("div");
+  c.className="card";
+  c.style.setProperty("--seg", SEG_COLORS[i.segmento]||"var(--grupo)");
+  const dataFmt = i.data ? new Date(i.data+"T00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"}) : "";
+  c.innerHTML = `
+    <div class="c-top">
+      <span class="seg-badge">${i.segmento||"Grupo"}</span>
+      <span class="status-badge s-${i.status}">${STATUS_LABEL[i.status]||""}</span>
+      ${dataFmt?`<span class="c-data">${dataFmt}</span>`:""}
+    </div>
+    <div class="c-titulo">${esc(i.titulo)||"<em>Sem título</em>"}</div>
+    ${i.obs?`<div class="c-obs">${esc(i.obs)}</div>`:""}
+    <div class="c-foot">
+      ${i.resp?`<span class="c-resp">👤 ${esc(i.resp)}</span>`:""}
+      ${i.link?`<a class="c-link" href="${esc(i.link)}" target="_blank" rel="noopener" onclick="event.stopPropagation()">🔗 abrir</a>`:""}
+    </div>`;
+  c.onclick = ()=> openModal(i);
+  return c;
+}
+function esc(s){ return (s||"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m])); }
+
+/* ---------- MODAL ---------- */
+const overlay = document.getElementById("overlay");
+function openModal(item, presetTipo){
+  document.getElementById("modalTitle").textContent = item ? "Editar ação" : "Nova ação";
+  document.getElementById("f_id").value = item?.id || "";
+  document.getElementById("f_tipo").value = item?.tipo || presetTipo || "on";
+  document.getElementById("f_canal").value = item?.canal || "";
+  document.getElementById("f_titulo").value = item?.titulo || "";
+  document.getElementById("f_segmento").value = item?.segmento || "Grupo";
+  document.getElementById("f_data").value = item?.data || "";
+  document.getElementById("f_status").value = item?.status || "ideia";
+  document.getElementById("f_resp").value = item?.resp || "";
+  document.getElementById("f_obs").value = item?.obs || "";
+  document.getElementById("f_link").value = item?.link || "";
+  document.getElementById("btnDelete").style.display = item ? "inline-flex" : "none";
+  overlay.classList.add("show");
+  document.getElementById("f_titulo").focus();
+}
+function closeModal(){ overlay.classList.remove("show"); }
+
+document.getElementById("btnSave").onclick = ()=>{
+  const id = document.getElementById("f_id").value;
+  const obj = {
+    id: id || uid(),
+    tipo: document.getElementById("f_tipo").value,
+    canal: document.getElementById("f_canal").value.trim() || "Sem canal",
+    titulo: document.getElementById("f_titulo").value.trim(),
+    segmento: document.getElementById("f_segmento").value,
+    data: document.getElementById("f_data").value,
+    status: document.getElementById("f_status").value,
+    resp: document.getElementById("f_resp").value.trim(),
+    obs: document.getElementById("f_obs").value.trim(),
+    link: document.getElementById("f_link").value.trim()
+  };
+  if(id){
+    const idx = state.items.findIndex(x=>x.id===id);
+    if(idx>=0) state.items[idx]=obj;
+  } else {
+    state.items.push(obj);
+  }
+  closeModal(); render();
+};
+document.getElementById("btnDelete").onclick = ()=>{
+  const id = document.getElementById("f_id").value;
+  if(id && confirm("Excluir esta ação?")){
+    state.items = state.items.filter(x=>x.id!==id);
+    closeModal(); render();
+  }
+};
+document.getElementById("btnCancel").onclick = closeModal;
+overlay.onclick = e=>{ if(e.target===overlay) closeModal(); };
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeModal(); });
+
+/* ---------- TOOLBAR ---------- */
+document.getElementById("btnAdd").onclick = ()=> openModal();
+document.getElementById("filtroSeg").onchange = renderBoard;
+document.getElementById("filtroStatus").onchange = renderBoard;
+document.getElementById("mesInput").oninput = e=>{ state.mes = e.target.value; save(); };
+
+document.getElementById("btnExport").onclick = ()=>{
+  const blob = new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "planejamento-formosa-"+(state.mes||"").replace(/\s+/g,"-").toLowerCase()+".json";
+  a.click();
+};
+document.getElementById("btnImport").onclick = ()=> document.getElementById("fileImport").click();
+document.getElementById("fileImport").onchange = e=>{
+  const file = e.target.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = ()=>{
+    try{
+      const data = JSON.parse(r.result);
+      if(data && Array.isArray(data.items)){ state = data; render(); }
+      else alert("Arquivo inválido.");
+    }catch(err){ alert("Não foi possível ler o arquivo."); }
+  };
+  r.readAsText(file);
+  e.target.value="";
+};
+document.getElementById("btnClear").onclick = ()=>{
+  if(confirm("Apagar TODAS as ações? Recomendo exportar um backup antes.")){
+    state = {mes: state.mes, items: []}; render();
+  }
+};
+
+render();
+</script>
+</body>
+</html>
