@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formosa · Central de Planejamento de Marketing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FBFAF6;--surface:#FFFFFF;--ink:#1E2A2B;--muted:#6B7775;--hair:#E8E3D9;--sun:#F2A93B;
+    --disp:"Bricolage Grotesque",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px;margin:0 auto;padding:48px 22px 80px;}
+  .brand{font-family:var(--disp);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;}
+  .brand b{color:var(--sun);}
+  h1{font-family:var(--disp);font-weight:800;font-size:clamp(30px,6vw,52px);line-height:1.02;margin:10px 0 6px;letter-spacing:-.01em;}
+  .sub{color:var(--muted);font-size:16px;max-width:52ch;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px;}
+  @media(max-width:680px){.grid{grid-template-columns:1fr;}}
+  .card{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--hair);border-radius:18px;padding:26px;transition:.16s;}
+  .card:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(0,0,0,.08);border-color:var(--ink);}
+  .card .ic{font-size:30px;}
+  .card h2{font-family:var(--disp);font-weight:800;font-size:21px;margin:14px 0 6px;}
+  .card p{color:var(--muted);font-size:14px;margin:0;}
+  .card .go{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-weight:700;font-size:14px;color:var(--ink);}
+  .card.feat{border-left:6px solid var(--sun);}
+  footer{margin-top:46px;border-top:1px solid var(--hair);padding-top:18px;color:var(--muted);font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">Grupo <b>Formosa</b> · @formosaoficial</div>
+  <h1>Central de Planejamento</h1>
+  <p class="sub">Marketing do Grupo Formosa — calendário de conteúdo e espaço de planejamento de mídias ON e OFF. Belém · Pará.</p>
+
+  <div class="grid">
+    <a class="card feat" href="planejamento-marketing.html">
+      <div class="ic">🗂️</div>
+      <h2>Planejamento do Mês</h2>
+      <p>Espaço para alimentar com as ações de mídia ON (digital) e OFF (offline), por canal, segmento e status. Salva automático.</p>
+      <span class="go">Abrir planejamento →</span>
+    </a>
+    <a class="card" href="calendario-verao-formosa.html">
+      <div class="ic">📅</div>
+      <h2>Calendário de Verão</h2>
+      <p>Calendário de conteúdo de verão por data, com macrotema e etapa da jornada em cada dia. 60 posts mapeados.</p>
+      <span class="go">Abrir calendário →</span>
+    </a>
+  </div>
+
+  <footer>Atualizado em jun/2026 · Grupo Formosa</footer>
+</div>
+</body>
+</html>
